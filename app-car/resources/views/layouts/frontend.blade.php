@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Contact Kami- Laravel</title>
+    <title>Rental Mobil - Laravel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -21,14 +21,14 @@
       rel="stylesheet"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/custom.css" />
+    <link href="{{ asset('frontend/css/styles.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" />
   </head>
   <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="./index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="{{ route('homepage') }}">Start Bootstrap</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -43,48 +43,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">Home</a>
+              <a class="nav-link active" href="{{ route('homepage') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./contact.html">Contact</a>
+              <a class="nav-link" href="{{ route('contact') }}">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <!-- Header-->
+    @yield('content')
+    <!-- Section-->
 
-    <div class="maparea">
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe
-            width="100%"
-            height="498"
-            id="gmap_canvas"
-            src="https://maps.google.com/maps?q=jeringo&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            frameborder="0"
-            scrolling="no"
-            marginheight="0"
-            marginwidth="0"
-          ></iframe
-          ><a href="https://fmovies-online.net">fmovies</a><br /><style>
-            .mapouter {
-              position: relative;
-              text-align: right;
-              height: 498px;
-              width: 100%;
-            }</style
-          ><a href="https://www.embedgooglemap.net"></a
-          ><style>
-            .gmap_canvas {
-              overflow: hidden;
-              background: none !important;
-              height: 498px;
-              width: 100%;
-            }
-          </style>
-        </div>
-      </div>
-    </div>
     <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container">
@@ -94,8 +65,8 @@
       </div>
     </footer>
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('frontend/js/bootstrap.js') }}"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="{{ asset('frontend/js/scripts.js') }}"></script>
   </body>
 </html>
