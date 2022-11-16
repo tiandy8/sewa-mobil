@@ -48,7 +48,7 @@ class CarController extends Controller
             Car::create($request->except('gambar' )+ ['gambar' => $gambar,'slug' => $slug]);
         }
 
-        return redirect()->route('cars.index')->with([
+        return redirect()->route('admin.cars.index')->with([
             'message' => 'Data sukses dibuat',
             'alert-type' => 'success'
         ]);
@@ -90,7 +90,7 @@ class CarController extends Controller
             $car->update($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('cars.index')->with([
+        return redirect()->route('admin.cars.index')->with([
             'message'=> 'data berhasil diedit',
             'alert-type'  => 'info',
         ]);
@@ -109,7 +109,7 @@ class CarController extends Controller
                 unlink('storage/'. $car->gambar);
 
             }
-                $car->delete9();
+                $car->delete();
 
                 return redirect()->back()->with([
                     'message' => 'data berhasil di hapus',

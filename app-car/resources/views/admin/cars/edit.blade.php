@@ -9,7 +9,7 @@
                     Form Edit Data
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cars.update', $car->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.cars.update', $car->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group">
