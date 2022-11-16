@@ -23,6 +23,7 @@ Route::get('detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('admin/dashboard',[\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index')->middleware('is_admin');
 Route::resource('admin/cars', CarController::class);
+Route::put('admin/cars/update-image/{id}', [\App\Http\Controllers\Admin\CarController::class, 'updateImage'])->name('admin.cars.updateImage');
 
 
 Auth::routes();

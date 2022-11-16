@@ -32,7 +32,12 @@
                                 <td>{{ $car->harga_sewa }}</td>
                                 <td>{{ $car->status }}</td>
                                 <td>
-                                    <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ route('cars.edit', $car->id ) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form onclick="return confirm('anda yakin data di hapus?')" class="d-inline" action="{{ route('cars.destroy',  $car->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @empty

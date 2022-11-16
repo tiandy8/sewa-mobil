@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarStoreRequest;
+use App\Http\Requests\Admin\CarUpdateRequest;
 
 class CarController extends Controller
 {
@@ -70,9 +71,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('admin.cars.edit', compact('car'));
     }
 
     /**
@@ -82,9 +83,17 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarUpdateRequest $request, Car $car)
     {
-        //
+        if ($request->validated()) {
+            $slug = Str::slug($request->nama_mobil, '-');
+            $car->update($request->validated() + ['slug' => $slug]);
+        }
+
+        return redirect()->route('cars.index')->with([
+            'message'=> 'data berhasil diedit',
+            'alert-type'  => 'info',
+        ]);
     }
 
     /**
@@ -93,8 +102,38 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+
+            if ($car->gambar)  {
+                unlink('storage/'. $car->gambar);
+
+            }
+                $car->delete9();
+
+                return redirect()->back()->with([
+                    'message' => 'data berhasil di hapus',
+                    'alert-type' => 'danger'
+                ]);
+            }
+
+    public function updateImage(Request $request, $carId)
+    {
+        $request->validate([
+            'gambar' => 'required|image'
+        ]);
+        $car = Car::findOrFail($carId);
+        if ($request->gambar) {
+            unlink('storage/' . $car->gambar);
+            $gambar = $request->file('gambar')->store('assets/car', 'public');
+            $car->update(['gambar' => $gambar]);
+
+        }
+
+        return redirect()->back()->with([
+            'message'=>'gambar berhasil diedit',
+            'alert-type'=> 'info'
+        ]);
+
     }
 }

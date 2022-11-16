@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
-                    <textarea name="deskripsi" class="form-control" id="deskripsi" cols="30" rows="5"></textarea>
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" cols="30" rows="5">{{ old('deskripsi') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="p3k">p3k</label>
@@ -71,6 +71,7 @@
                         <option value="0">Tidak Tersedia</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="gambar">Gambar</label>
                     <input type="file" class="form-control" name="gambar">
